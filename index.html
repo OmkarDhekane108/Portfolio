@@ -130,18 +130,13 @@
   }
   .hero-stats .lbl{font-size:0.82rem; color:var(--ink-soft);}
 
-  .hero-art{width:100%; height:auto;}
-  .hero-photo-wrap{position:relative;}
-  .hero-photo{
-    position:absolute; top:8%; left:50%; transform:translateX(-50%);
-    width:112px; height:112px; border-radius:50%;
-    background:var(--green-deep); color:#fff;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.4rem;
-    border:4px solid var(--surface); box-shadow:0 8px 24px rgba(168,58,23,0.28);
-    z-index:2; overflow:hidden;
+  .hero-photo-wrap{display:flex; justify-content:center;}
+  .hero-photo-large{
+    width:100%; max-width:340px; aspect-ratio:1/1; border-radius:24px;
+    background:var(--green-deep); overflow:hidden;
+    border:6px solid var(--surface); box-shadow:0 16px 40px rgba(168,58,23,0.22);
   }
-  .hero-photo img{width:100%; height:100%; object-fit:cover;}
+  .hero-photo-large img{width:100%; height:100%; object-fit:cover;}
   .about-photo{
     width:100%; aspect-ratio:1/1; border-radius:var(--radius-m);
     background:var(--green-deep); color:#fff;
@@ -300,7 +295,7 @@
   @media (max-width: 860px){
     .navlinks{display:none;}
     .hero .wrap{grid-template-columns:1fr;}
-    .hero-art{max-width:340px; margin:0 auto;}
+    .hero-photo-large{max-width:260px; margin:0 auto;}
     .about-grid{grid-template-columns:1fr;}
     .exp-card{grid-template-columns:1fr;}
     .pub-card{grid-template-columns:1fr;}
@@ -350,31 +345,7 @@
       </div>
     </div>
     <div class="hero-photo-wrap">
-      <div class="hero-photo" id="heroPhoto"><img src="omkar.jpeg" alt="Omkar Dhekane"></div>
-      <svg class="hero-art" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="210" cy="210" r="200" fill="#F7E3D3"/>
-        <g stroke="#D9720F" stroke-width="2" stroke-linecap="round" opacity="0.55">
-          <path d="M60 300 h50 v-40 h40"/>
-          <path d="M340 120 h-46 v50 h-40"/>
-          <path d="M90 100 v40 h60"/>
-          <path d="M330 300 h-40 v-30"/>
-        </g>
-        <g fill="#D9720F" opacity="0.6">
-          <circle cx="60" cy="300" r="5"/>
-          <circle cx="150" cy="260" r="5"/>
-          <circle cx="340" cy="120" r="5"/>
-          <circle cx="254" cy="170" r="5"/>
-          <circle cx="90" cy="100" r="5"/>
-          <circle cx="150" cy="140" r="5"/>
-          <circle cx="330" cy="300" r="5"/>
-          <circle cx="290" cy="270" r="5"/>
-        </g>
-        <path d="M210 60 C150 90 130 150 150 210 C165 255 210 270 210 320 C210 270 255 255 270 210 C290 150 270 90 210 60Z" fill="#C7511F" opacity="0.9"/>
-        <path d="M210 90 V300" stroke="#FBF4EE" stroke-width="3" opacity="0.6"/>
-        <path d="M210 140 C185 150 175 175 185 195" stroke="#FBF4EE" stroke-width="2.5" fill="none" opacity="0.5"/>
-        <path d="M210 190 C235 200 245 225 235 245" stroke="#FBF4EE" stroke-width="2.5" fill="none" opacity="0.5"/>
-        <circle cx="210" cy="210" r="14" fill="#F2A03D"/>
-      </svg>
+      <div class="hero-photo-large" id="heroPhoto"><img src="omkar.jpeg" alt="Omkar Dhekane"></div>
     </div>
   </div>
 </section>
