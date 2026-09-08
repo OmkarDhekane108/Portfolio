@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omkar Dhekane — Computer Science & Engineering</title>
+<meta name="description" content="Portfolio of Omkar Dhekane — CSE student working across cybersecurity, IoT and computer vision.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FBF4EE;
+    --bg-alt: #F7E3D3;
+    --surface: #FFFFFF;
+    --ink: #341B12;
+    --ink-soft: #7A5445;
+    --line: #EED6C3;
+    --green: #C7511F;
+    --green-deep: #A83A17;
+    --blue: #D9720F;
+    --amber: #F2A03D;
+    --coral: #D9431F;
+    --radius-s: 6px;
+    --radius-m: 12px;
+    --maxw: 1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    color:var(--green-deep);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+
+  /* NAV */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,247,241,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:68px;
+  }
+  .brand{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600; font-size:1.05rem;
+    color:var(--green-deep);
+    text-decoration:none;
+  }
+  .brand span{color:var(--blue);}
+  .navlinks{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .navlinks a{
+    text-decoration:none; color:var(--ink-soft); font-size:0.93rem; font-weight:500;
+    padding:6px 2px; border-bottom:2px solid transparent; transition:border-color .15s, color .15s;
+  }
+  .navlinks a:hover{color:var(--green-deep); border-color:var(--green);}
+  .navtoggle{display:none;}
+
+  /* HERO */
+  .hero{
+    padding:88px 0 72px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+  }
+  .kicker{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.85rem; color:var(--blue); font-weight:500;
+    margin-bottom:18px;
+  }
+  .kicker::before{
+    content:""; width:7px; height:7px; border-radius:50%;
+    background:var(--amber); display:inline-block;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 4vw, 3.15rem);
+    line-height:1.08;
+    font-weight:600;
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--green);
+  }
+  .hero p.lede{
+    margin-top:22px; font-size:1.08rem; color:var(--ink-soft); max-width:52ch;
+  }
+  .hero-cta{
+    margin-top:32px; display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px; border-radius:var(--radius-s);
+    font-weight:600; font-size:0.94rem; text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+    border:1.5px solid transparent;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--green-deep); color:#fff;}
+  .btn-primary:hover{box-shadow:0 8px 20px rgba(31,74,42,0.25);}
+  .btn-ghost{border-color:var(--green-deep); color:var(--green-deep);}
+  .btn-ghost:hover{background:var(--surface);}
+
+  .hero-stats{
+    display:flex; gap:28px; margin-top:44px; flex-wrap:wrap;
+  }
+  .hero-stats div{min-width:110px;}
+  .hero-stats .num{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.55rem; color:var(--green-deep);
+  }
+  .hero-stats .lbl{font-size:0.82rem; color:var(--ink-soft);}
+
+  .hero-art{width:100%; height:auto;}
+  .hero-photo-wrap{position:relative;}
+  .hero-photo{
+    position:absolute; top:8%; left:50%; transform:translateX(-50%);
+    width:112px; height:112px; border-radius:50%;
+    background:var(--green-deep); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.4rem;
+    border:4px solid var(--surface); box-shadow:0 8px 24px rgba(168,58,23,0.28);
+    z-index:2; overflow:hidden;
+  }
+  .hero-photo img{width:100%; height:100%; object-fit:cover;}
+  .about-photo{
+    width:100%; aspect-ratio:1/1; border-radius:var(--radius-m);
+    background:var(--green-deep); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:2rem;
+    margin-bottom:14px; overflow:hidden;
+  }
+  .about-photo img{width:100%; height:100%; object-fit:cover;}
+
+  /* SECTION GENERIC */
+  section{padding:76px 0;}
+  .section-head{
+    max-width:60ch; margin-bottom:40px;
+  }
+  .section-head .tag{
+    font-size:0.83rem; color:var(--blue); font-weight:600; margin-bottom:10px; display:block;
+  }
+  .section-head h2{
+    font-size:clamp(1.55rem, 3vw, 2.15rem); font-weight:600;
+  }
+  .section-head p{color:var(--ink-soft); margin-top:12px; font-size:1rem;}
+
+  .alt{background:var(--bg-alt);}
+
+  /* ABOUT */
+  .about-grid{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:start;
+  }
+  .about-grid p{color:var(--ink-soft); margin:0 0 16px;}
+  .about-grid p:last-child{margin-bottom:0;}
+  .fact-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m);
+    padding:22px 24px;
+  }
+  .fact-card + .fact-card{margin-top:14px;}
+  .fact-card h4{
+    font-family:'Space Grotesk', sans-serif; font-size:0.98rem; color:var(--green-deep); margin:0 0 4px;
+  }
+  .fact-card p{margin:0; font-size:0.9rem; color:var(--ink-soft);}
+
+  /* SKILLS */
+  .skill-groups{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:20px;
+  }
+  .skill-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m);
+    padding:24px;
+    border-top:3px solid var(--accent, var(--green));
+  }
+  .skill-card h3{font-size:1.02rem; margin-bottom:14px; color:var(--ink);}
+  .skill-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .skill-tags span{
+    font-size:0.82rem; padding:5px 11px; border-radius:20px;
+    background:var(--bg-alt); color:var(--ink-soft); border:1px solid var(--line);
+  }
+
+  /* EXPERIENCE */
+  .exp-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m);
+    padding:32px; display:grid; grid-template-columns:220px 1fr; gap:32px;
+  }
+  .exp-meta h3{font-size:1.15rem;}
+  .exp-meta .role{color:var(--blue); font-weight:600; font-size:0.92rem; margin-top:6px;}
+  .exp-meta .dates{color:var(--ink-soft); font-size:0.85rem; margin-top:10px;}
+  .exp-list{list-style:none; margin:0; padding:0;}
+  .exp-list li{
+    padding:14px 0; border-bottom:1px solid var(--line);
+  }
+  .exp-list li:last-child{border-bottom:none; padding-bottom:0;}
+  .exp-list strong{color:var(--ink); display:block; margin-bottom:4px; font-size:0.97rem;}
+  .exp-list span{color:var(--ink-soft); font-size:0.92rem;}
+  .exp-note{
+    margin-top:18px; padding:14px 16px; background:var(--bg-alt); border-left:3px solid var(--amber);
+    border-radius:0 var(--radius-s) var(--radius-s) 0; font-size:0.9rem; color:var(--ink-soft);
+  }
+
+  /* PROJECTS */
+  .proj-filter{
+    display:flex; gap:10px; margin-bottom:28px; flex-wrap:wrap;
+  }
+  .proj-filter button{
+    font-family:'Inter', sans-serif; font-size:0.85rem; font-weight:500;
+    padding:8px 16px; border-radius:20px; border:1px solid var(--line);
+    background:var(--surface); color:var(--ink-soft); cursor:pointer; transition:all .15s;
+  }
+  .proj-filter button.active, .proj-filter button:hover{
+    background:var(--green-deep); color:#fff; border-color:var(--green-deep);
+  }
+  .proj-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:22px;
+  }
+  .proj-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m);
+    padding:26px; display:flex; flex-direction:column;
+  }
+  .proj-card .cat{
+    font-size:0.78rem; font-weight:600; color:var(--blue); margin-bottom:10px;
+  }
+  .proj-card h3{font-size:1.08rem; margin-bottom:8px; line-height:1.3;}
+  .proj-card .meta{font-size:0.8rem; color:var(--ink-soft); margin-bottom:12px;}
+  .proj-card p{font-size:0.91rem; color:var(--ink-soft); margin:0 0 16px; flex-grow:1;}
+  .proj-card .tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .proj-card .tags span{
+    font-size:0.76rem; padding:4px 9px; border-radius:5px; background:var(--bg-alt); color:var(--ink);
+  }
+
+  /* PUBLICATION */
+  .pub-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m);
+    padding:32px; display:grid; grid-template-columns:auto 1fr; gap:26px; align-items:start;
+  }
+  .pub-icon{
+    width:52px; height:52px; border-radius:10px; background:var(--green-deep);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .pub-card h3{font-size:1.15rem; margin-bottom:8px;}
+  .pub-card .journal{color:var(--blue); font-size:0.9rem; font-weight:600; margin-bottom:10px;}
+  .pub-card p{color:var(--ink-soft); font-size:0.94rem; margin:0 0 14px;}
+  .pub-card .doi{font-size:0.85rem; color:var(--ink-soft);}
+  .pub-card .doi a{color:var(--green-deep); font-weight:600; text-decoration:none; border-bottom:1px solid var(--green);}
+
+  /* ACHIEVEMENTS / CERTS TIMELINE */
+  .achieve-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:18px;
+  }
+  .achieve-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m);
+    padding:22px;
+  }
+  .achieve-card .date{font-size:0.78rem; color:var(--amber); font-weight:600; margin-bottom:8px;}
+  .achieve-card h4{font-family:'Space Grotesk', sans-serif; font-size:0.98rem; color:var(--ink); margin:0 0 8px;}
+  .achieve-card p{margin:0; font-size:0.87rem; color:var(--ink-soft);}
+
+  /* CONTACT */
+  .contact-wrap{
+    background:var(--green-deep); border-radius:20px; padding:64px 56px;
+    color:#fff; display:grid; grid-template-columns:1.2fr 1fr; gap:40px; align-items:center;
+  }
+  .contact-wrap h2{color:#fff; font-size:clamp(1.6rem, 3vw, 2.3rem);}
+  .contact-wrap p{color:#CFE0D2; margin-top:14px; max-width:44ch;}
+  .contact-links{display:flex; flex-direction:column; gap:14px;}
+  .contact-links a{
+    display:flex; align-items:center; gap:12px;
+    text-decoration:none; color:#fff; font-size:0.98rem; font-weight:500;
+    padding:14px 18px; background:rgba(255,255,255,0.08); border-radius:var(--radius-s);
+    transition:background .15s;
+  }
+  .contact-links a:hover{background:rgba(255,255,255,0.16);}
+  .contact-wrap .btn-primary{background:var(--amber); margin-top:26px;}
+  .contact-wrap .btn-primary:hover{box-shadow:0 8px 20px rgba(217,138,31,0.35);}
+
+  footer{
+    padding:36px 0; text-align:center; color:var(--ink-soft); font-size:0.85rem;
+  }
+
+  @media (max-width: 860px){
+    .navlinks{display:none;}
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-art{max-width:340px; margin:0 auto;}
+    .about-grid{grid-template-columns:1fr;}
+    .exp-card{grid-template-columns:1fr;}
+    .pub-card{grid-template-columns:1fr;}
+    .contact-wrap{grid-template-columns:1fr; padding:44px 28px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+
+  .fade-in{opacity:0; transform:translateY(14px); animation:fadeUp .7s ease forwards;}
+  @keyframes fadeUp{to{opacity:1; transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="wrap">
+    <a href="#home" class="brand">Omkar <span>Dhekane</span></a>
+    <ul class="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publication">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="fade-in">
+      <span class="kicker">Open to Software & Security roles</span>
+      <h1>I build systems that <em>sense the field</em> and <em>defend the network.</em></h1>
+      <p class="lede">Computer Science & Engineering student combining hands-on cybersecurity work with IoT and computer-vision projects — from a fertilizer-spraying rover to vulnerability assessments on live web apps.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">See my work</a>
+        <a href="resume.pdf" class="btn btn-ghost" download>Download résumé</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="num">4+</div><div class="lbl">IoT & CV projects</div></div>
+        <div><div class="num">1st</div><div class="lbl">author, published paper</div></div>
+        <div><div class="num">1</div><div class="lbl">month, cybersecurity internship</div></div>
+        <div><div class="num">2027</div><div class="lbl">expected graduation</div></div>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="hero-photo" id="heroPhoto"><img src="omkar.jpeg" alt="Omkar Dhekane"></div>
+      <svg class="hero-art" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="210" cy="210" r="200" fill="#F7E3D3"/>
+        <g stroke="#D9720F" stroke-width="2" stroke-linecap="round" opacity="0.55">
+          <path d="M60 300 h50 v-40 h40"/>
+          <path d="M340 120 h-46 v50 h-40"/>
+          <path d="M90 100 v40 h60"/>
+          <path d="M330 300 h-40 v-30"/>
+        </g>
+        <g fill="#D9720F" opacity="0.6">
+          <circle cx="60" cy="300" r="5"/>
+          <circle cx="150" cy="260" r="5"/>
+          <circle cx="340" cy="120" r="5"/>
+          <circle cx="254" cy="170" r="5"/>
+          <circle cx="90" cy="100" r="5"/>
+          <circle cx="150" cy="140" r="5"/>
+          <circle cx="330" cy="300" r="5"/>
+          <circle cx="290" cy="270" r="5"/>
+        </g>
+        <path d="M210 60 C150 90 130 150 150 210 C165 255 210 270 210 320 C210 270 255 255 270 210 C290 150 270 90 210 60Z" fill="#C7511F" opacity="0.9"/>
+        <path d="M210 90 V300" stroke="#FBF4EE" stroke-width="3" opacity="0.6"/>
+        <path d="M210 140 C185 150 175 175 185 195" stroke="#FBF4EE" stroke-width="2.5" fill="none" opacity="0.5"/>
+        <path d="M210 190 C235 200 245 225 235 245" stroke="#FBF4EE" stroke-width="2.5" fill="none" opacity="0.5"/>
+        <circle cx="210" cy="210" r="14" fill="#F2A03D"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">About</span>
+      <h2>A dual foundation in data and defense</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I'm a Computer Science & Engineering student at SVERI's College of Engineering, Pandharpur, building toward two things at once: making systems more secure, and making them smarter about the physical world around them.</p>
+        <p>That's shown up as a cybersecurity internship where I assessed live websites for vulnerabilities and analyzed phishing patterns, and as a string of IoT and computer-vision projects — an automated fertilizer sprayer, a fish-growth monitor, a soil-moisture irrigation system — built with sensors, microcontrollers and Python.</p>
+        <p>Alongside the building, I've published a peer-reviewed review paper on deep learning in medical diagnosis, picked up cloud foundations on AWS and Google Cloud, and coordinated national-level department events. I like projects with a physical result, and reports that a non-technical reader can actually act on.</p>
+      </div>
+      <div>
+        <div class="about-photo"><img src="omkar.jpeg" alt="Omkar Dhekane"></div>
+        <div class="fact-card">
+          <h4>Education</h4>
+          <p>B.Tech, Computer Science & Engineering — SVERI's College of Engineering, Pandharpur (2023–2027)</p>
+        </div>
+        <div class="fact-card">
+          <h4>Based in</h4>
+          <p>Dharashiv, Maharashtra, India</p>
+        </div>
+        <div class="fact-card">
+          <h4>Languages</h4>
+          <p>English, Marathi, Hindi</p>
+        </div>
+        <div class="fact-card">
+          <h4>Outside of work</h4>
+          <p>Small IoT builds, music, and gaming in whatever time is left</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Experience</span>
+      <h2>Cybersecurity internship, Future Interns</h2>
+    </div>
+    <div class="exp-card">
+      <div class="exp-meta">
+        <h3>Future Interns</h3>
+        <div class="role">Cyber Security Intern</div>
+        <div class="dates">08 Jan 2026 – 08 Feb 2026 · Remote, task-based</div>
+      </div>
+      <div>
+        <ul class="exp-list">
+          <li>
+            <strong>Vulnerability assessment for a live website</strong>
+            <span>Identified common web vulnerabilities using Nmap and OWASP ZAP passive scanning, classified risks as Low, Medium or High, and prepared a client-facing report with remediation steps.</span>
+          </li>
+          <li>
+            <strong>Phishing email detection & awareness system</strong>
+            <span>Analyzed phishing indicators — spoofed senders, fake domains, malicious links — via email header analysis, classified sample emails as Safe, Suspicious or Phishing, and wrote a security-awareness report with prevention guidelines.</span>
+          </li>
+          <li>
+            <strong>API security risk analysis</strong>
+            <span>Used Postman and browser DevTools to find insecure API endpoints, checked authentication and authorization handling, and flagged missing rate-limiting and input validation.</span>
+          </li>
+        </ul>
+        <div class="exp-note">Received a letter of recommendation for consistent professionalism and translating technical findings into clear, business-friendly documentation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Skills</span>
+      <h2>What I work with</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-card" style="--accent:#A83A17">
+        <h3>Languages & Data</h3>
+        <div class="skill-tags"><span>Python</span><span>SQL</span><span>Java</span><span>JavaScript</span></div>
+      </div>
+      <div class="skill-card" style="--accent:#D9431F">
+        <h3>Security</h3>
+        <div class="skill-tags"><span>Nmap</span><span>OWASP ZAP</span><span>Postman</span><span>Vulnerability Assessment</span><span>API Security</span></div>
+      </div>
+      <div class="skill-card" style="--accent:#F2A03D">
+        <h3>IoT & Embedded</h3>
+        <div class="skill-tags"><span>Arduino</span><span>ESP32</span><span>Sensors</span><span>Computer Vision</span><span>Automation</span></div>
+      </div>
+      <div class="skill-card" style="--accent:#D9720F">
+        <h3>Cloud & Tools</h3>
+        <div class="skill-tags"><span>AWS</span><span>Google Cloud</span><span>Git & GitHub</span><span>Flask</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Projects</span>
+      <h2>Selected work</h2>
+      <p>Mostly IoT and computer vision, aimed at agriculture and precision monitoring, plus one hands-on Java build.</p>
+    </div>
+    <div class="proj-filter">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="agritech">AgriTech & IoT</button>
+      <button data-filter="software">Software</button>
+    </div>
+    <div class="proj-grid" id="projGrid">
+      <div class="proj-card" data-cat="agritech">
+        <div class="cat">AgriTech · IoT</div>
+        <h3>Automated Fertilizer Spraying Vehicle</h3>
+        <div class="meta">Dec 2025 – Feb 2026 · Team of 4</div>
+        <p>A microcontroller-driven rover for precision agriculture. I handled system design and sensor-control integration, plus Bluetooth-based communication for remote operation and real-time monitoring of the spraying mechanism.</p>
+        <div class="tags"><span>Arduino</span><span>Embedded Systems</span><span>Sensors</span><span>Automation</span></div>
+      </div>
+      <div class="proj-card" data-cat="agritech">
+        <div class="cat">IoT · Computer Vision</div>
+        <h3>Smart Fish Growth Monitoring System</h3>
+        <div class="meta">Nov 2025 – Feb 2026 · Team of 6 · DIPEX</div>
+        <p>An aquaculture monitoring prototype that estimates fish size from video and tracks growth over time, alongside water-quality and temperature sensors. I built the sensor integration and the vision-based size-estimation module.</p>
+        <div class="tags"><span>Python</span><span>Computer Vision</span><span>ESP32</span><span>Image Processing</span></div>
+      </div>
+      <div class="proj-card" data-cat="agritech">
+        <div class="cat">AgriTech · IoT</div>
+        <h3>Smart Agriculture: Soil Moisture Monitoring</h3>
+        <div class="meta">Feb 2025 – Mar 2025 · Team of 2</div>
+        <p>An automated irrigation system that turns a water pump on or off based on real-time soil-moisture thresholds. I handled sensor integration, threshold calibration and control logic.</p>
+        <div class="tags"><span>IoT</span><span>Arduino</span><span>ESP32</span><span>Soil Sensors</span></div>
+      </div>
+      <div class="proj-card" data-cat="software">
+        <div class="cat">Software</div>
+        <h3>Java Console Chatbot</h3>
+        <div class="meta">Personal project</div>
+        <p>A rule-based console chatbot in Core Java that matches keywords to predefined responses, with a modular structure that makes it easy to add new rules without touching the core logic.</p>
+        <div class="tags"><span>Core Java</span><span>OOP</span><span>Console App</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publication">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Research</span>
+      <h2>Published work</h2>
+    </div>
+    <div class="pub-card">
+      <div class="pub-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 9h8M8 13h8M8 17h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <h3>Deep Learning for Medical Image Diagnosis: A Review of Methods, Applications, and Challenges</h3>
+        <div class="journal">International Journal of Scientific Research in Engineering and Management (IJSREM) · Nov 2025</div>
+        <p>A peer-reviewed review article, published as first author alongside co-authors Prasad Khapale and Samarth Kshirsagar, examining how CNNs, RNNs, autoencoders, GANs and vision transformers have shaped automated medical image diagnosis — covering key architectures, clinical applications, common datasets, a generalized deep-learning workflow, and future directions like explainable AI and federated learning.</p>
+        <div class="doi">ISSN 2582-3930 · <a href="https://doi.org/10.55041/IJSREM54190" target="_blank" rel="noopener">DOI: 10.55041/IJSREM54190</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="achievements">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Achievements & Certifications</span>
+      <h2>Beyond the classroom</h2>
+    </div>
+    <div class="achieve-grid">
+      <div class="achieve-card">
+        <div class="date">Feb 2026</div>
+        <h4>Presenter, DIPEX-2026</h4>
+        <p>Presented an agri-tech innovation idea in the Idea Presentation Round, Solapur Region, at Karmayogi Institute of Technology.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="date">Jul 2026</div>
+        <h4>QuizOff 2026</h4>
+        <p>Competed in India's biggest AI quiz, organized by CampusCrew on Unstop, among 5,25,000+ students from 48,500+ institutions.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="date">Oct 2025</div>
+        <h4>Google Cloud Career Launchpad</h4>
+        <p>Completed the Computing Foundations track, covering core cloud computing concepts on Google Cloud Platform.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="date">Sep 2025</div>
+        <h4>AWS Academy Cloud Foundations</h4>
+        <p>20-hour program covering AWS cloud concepts, core services, security, architecture, pricing and support. Verified via Credly.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="date">Sep 2025</div>
+        <h4>Cybersecurity, Tech Mahindra Foundation</h4>
+        <p>10-hour online skilling course on information security fundamentals via Skill India Digital Hub.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="date">Dec 2026</div>
+        <h4>Data Science & Analytics, HP LIFE</h4>
+        <p>Covered leading data science and analytics practices and what a data-driven approach means for a business.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="date">May 2026</div>
+        <h4>AI Tools & ChatGPT Workshop, be10x</h4>
+        <p>Hands-on session on using generative AI for presentations, data analysis and code debugging.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="date">2026</div>
+        <h4>Event coordination</h4>
+        <p>Coordinator for CHAKRAVYUH 2.0 (national-level CSE event) and the Registration Committee for Spirit 2K25.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-wrap">
+      <div>
+        <h2>Let's build something.</h2>
+        <p>Open to software development and cybersecurity roles, internships, and collaborations on IoT or applied ML projects.</p>
+        <a href="mailto:omkarsdhekane@coep.sveri.ac.in" class="btn btn-primary">Send an email</a>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:omkarsdhekane@coep.sveri.ac.in">omkarsdhekane@coep.sveri.ac.in</a>
+        <a href="https://github.com/OmkarDhekane108" target="_blank" rel="noopener">github.com/OmkarDhekane108</a>
+        <a href="https://www.linkedin.com/in/omkar-dhekane" target="_blank" rel="noopener">linkedin.com/in/omkar-dhekane</a>
+        <a href="https://www.credly.com/users/omkar-dhekane" target="_blank" rel="noopener">credly.com/users/omkar-dhekane</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Omkar Dhekane. Built with focus and a lot of debugging.</div>
+</footer>
+
+<script>
+  // project filter
+  const buttons = document.querySelectorAll('.proj-filter button');
+  const cards = document.querySelectorAll('.proj-card');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(c => {
+        c.style.display = (f === 'all' || c.dataset.cat === f) ? 'flex' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
